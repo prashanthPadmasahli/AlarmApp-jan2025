@@ -7,11 +7,24 @@
 
 import SwiftUI
 
+// MARK: - Main App Structure
 @main
-struct AlarmApp_jan2025App: App {
+struct AlarmApp: App {
+    init() {
+        // Request Notification Permission
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { success, error in
+            if success {
+                print("Notification access granted")
+            } else {
+                print("Notification access denied")
+            }
+        }
+    }
+
     var body: some Scene {
         WindowGroup {
             ContentView()
         }
     }
 }
+
